@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.NavList{
+  margin-bottom: 1.5rem;
+}
+
+
+.ListCountry{
+  width: 18rem;
+  margin-left: 2rem;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.countryDetails{
+  margin-left: 3rem;
+  width: 30em;
+}
+
+.countryInfo{
+  margin-left: 10em;
+}
+
+.countryInfo Link{
+  margin-left: 10em;
+}
