@@ -13,7 +13,7 @@ function App() {
         <Navbar />
         <div class="d-flex align-items-stretch">
           <Route path="/" component={CountriesList} />
-          <Route path="/:dinossauro" component={CountryDetails} />
+          <Route path="/:cca3" component={CountryDetails} />
         </div>
       </BrowserRouter>
     </div>

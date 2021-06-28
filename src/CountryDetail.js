@@ -4,33 +4,52 @@ import { Link } from 'react-router-dom';
 
 class CountryDetails extends React.Component {
   state = {
-    ccn3: '',
     name: '',
     capital: '',
     area: 0,
     borders: [],
   };
 
-  searchCountry = () => {
-    if (!this.state.name) {
-      let findCountry = CountryList.find((Country) => {
-        return Country.ccn3 === this.props.match.params.dinossauro;
-      }
-      
-      )
+  componentDidMount = () => {
+    this.searchCountry();
+  };
 
-      if (findCountry) {
-        this.setState({ ...findCountry });
-      }
+  componentDidUpdate = (prevProps) => {
+    if (this.props.match.params.cca3 !== prevProps.match.params.cca3) {
+      this.searchCountry();
     }
   };
 
-  render() {
-    this.searchCountry();
+  searchCountry = () => {
+    let findCountry = CountryList.find((Country) => {
+      return Country.cca3 === this.props.match.params.cca3;
+    });
 
+    if (findCountry) {
+      this.setState({
+        name: findCountry.name.common,
+        capital: findCountry.capital.join(', '),
+        area: findCountry.area,
+        borders: [...findCountry.borders],
+      });
+    }
+  };
+
+  getBorderCommonName = (cca3) => {
+    const country = CountryList.find((Country) => {
+      return Country.cca3 === cca3;
+    });
+
+    if (country) {
+      return country.name.common;
+    }
+    return '';
+  };
+
+  render() {
     return (
       <div class="countryDetails">
-        <h1>{this.state.name.common}</h1>
+        <h1>{this.state.name}</h1>
         <hr />
         <span>
           Capital <strong class="countryInfo">{this.state.capital}</strong>
@@ -45,12 +64,10 @@ class CountryDetails extends React.Component {
           <ul>
             {this.state.borders.map((borders) => {
               return (
-                <li
-                  class="countryInfo"
-                  key={borders}
-                  to={`/${this.state.ccn3}`}
-                >
-                  <Link>{borders}</Link>
+                <li class="countryInfo" key={borders}>
+                  <Link to={`/${borders}`}>
+                    {this.getBorderCommonName(borders)}
+                  </Link>
                 </li>
               );
             })}

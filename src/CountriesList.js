@@ -9,13 +9,13 @@ class CountriesList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{maxHeight: '90vh', overflow: 'scroll'}}>
         {this.state.newArr.map((newArr) => {
           return (
-            <div key={newArr.ccn3} className="ListCountry">
+            <div key={newArr.cca3} className="ListCountry" >
               <NavLink
                 activeClassName="active"
-                to={`/${newArr.ccn3}`}
+                to={`/${newArr.cca3}`}
                 className="list-group-item list-group-item-action"
               >
                 {newArr.flag}&nbsp;&nbsp;&nbsp;{newArr.name.common}
